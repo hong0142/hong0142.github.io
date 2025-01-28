@@ -1,0 +1,129 @@
+/* 响应式布局 */
+
+/* 大屏幕设备 (1200px 以上) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* 中等屏幕设备 (992px 到 1199px) */
+@media (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* 平板设备 (768px 到 991px) */
+@media (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-image {
+        margin-bottom: 30px;
+    }
+
+    .profile-info h2 {
+        text-align: center;
+    }
+
+    .timeline::before {
+        left: 0;
+    }
+
+    .timeline-content {
+        width: calc(100% - 30px);
+        margin-left: 30px;
+    }
+
+    .timeline-content::before {
+        left: -45px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 30px;
+        margin-right: 0;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -45px;
+        right: auto;
+    }
+}
+
+/* 手机设备 (767px 以下) */
+@media (max-width: 767px) {
+    .container {
+        max-width: 540px;
+    }
+
+    .navbar .container {
+        height: 60px;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 小型手机设备 (375px 以下) */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .profile-image {
+        flex: 0 0 250px;
+    }
+
+    .section h1 {
+        font-size: 1.8rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+} 
