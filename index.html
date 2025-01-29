@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简历</title>
-    <meta name="description" content="个人简历 - 展示专业技能、工作经验和教育背景">
-    <meta name="keywords" content="简历,个人简历,求职">
+    <title>洪泽平的个人简历</title>
+    <meta name="description" content="洪泽平的个人简历 - 嵌入式开发工程师，专注于DSP开发、视觉算法开发">
+    <meta name="keywords" content="简历,个人简历,嵌入式开发,DSP开发,视觉算法">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -19,7 +19,7 @@
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">我的简历</div>
+            <div class="logo">洪泽平的简历</div>
             <ul class="nav-links">
                 <li><a href="#about">关于我</a></li>
                 <li><a href="#education">教育背景</a></li>
@@ -40,19 +40,23 @@
             <h1>关于我</h1>
             <div class="about-content">
                 <div class="profile-image">
-                    <img src="assets/images/avatar.jpg" alt="个人照片">
+                    <img src="assets/images/avatar.jpg" alt="洪泽平的照片">
                 </div>
                 <div class="profile-info">
-                    <h2>姓名</h2>
-                    <p class="title">职位头衔</p>
+                    <h2>洪泽平</h2>
+                    <p class="title">嵌入式开发工程师 | 视觉算法工程师</p>
                     <p class="description">
-                        这里是个人简介，描述你的职业目标、个性特点和价值观等。
+                        具有丰富的嵌入式开发经验，专注于DSP开发和视觉算法开发。在航空电器领域有深入研究，
+                        主导过多个重要项目的开发。擅长C/C++编程，具备算法优化和系统架构设计能力。
                     </p>
+                    <div class="contact-brief">
+                        <p><i class="fas fa-phone"></i> 18250688552</p>
+                        <p><i class="fas fa-envelope"></i> 417795841@qq.com</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- 教育背景 -->
     <section id="education" class="section">
@@ -61,13 +65,20 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>学校名称</h3>
-                        <p class="date">2018 - 2022</p>
-                        <p>专业名称</p>
-                        <p>主要课程和成就</p>
+                        <h3>新加坡南洋理工大学（NTU）</h3>
+                        <p class="date">2013 - 2020</p>
+                        <p>航天航空工程（AE）专业 学士学位</p>
+                        <p>主要课程：计算机思想(Python)、通用编程(C)、计算机辅助工程(C)</p>
                     </div>
                 </div>
-                <!-- 可以添加更多教育经历 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>韩国汉阳大学（HYU）</h3>
+                        <p class="date">2015 - 2016</p>
+                        <p>航天航空工程 交换生</p>
+                        <p>主修：韩语、中韩经济、商业谈判学</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -79,17 +90,28 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>公司名称</h3>
-                        <p class="date">2022 - 至今</p>
-                        <p class="position">职位名称</p>
+                        <h3>AGV系统与视觉算法开发</h3>
+                        <p class="date">2023 - 至今</p>
+                        <p class="position">技术负责人</p>
                         <ul class="achievements">
-                            <li>工作职责和成就1</li>
-                            <li>工作职责和成就2</li>
-                            <li>工作职责和成就3</li>
+                            <li>主导AGV系统开发，实现机器人控制、通信、任务管理等核心功能</li>
+                            <li>开发视觉算法系统，实现mAP50达0.734，推理速度<100ms/帧</li>
+                            <li>设计并实现基于RS485、CANopen和WLAN的多层通信架构</li>
                         </ul>
                     </div>
                 </div>
-                <!-- 可以添加更多工作经验 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>上海航空电器有限公司</h3>
+                        <p class="date">2021.3 - 2023.10</p>
+                        <p class="position">软件工程师/嵌入式工程师</p>
+                        <ul class="achievements">
+                            <li>负责电弧检测算法研发项目，带领9人团队完成算法开发与实验室建设</li>
+                            <li>主导某型号飞机二次配电设备项目的软件开发，实现DO178c标准的代码编写</li>
+                            <li>以第一发明人身份发表2篇项目专利（CN116381437A、CN116413558A）</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -102,22 +124,50 @@
                 <div class="skill-category">
                     <h3>专业技能</h3>
                     <div class="skill-item">
-                        <div class="skill-name">技能1</div>
+                        <div class="skill-name">C/C++</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">DSP开发</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 90%"></div>
                         </div>
                     </div>
-                    <!-- 可以添加更多技能 -->
-                </div>
-                <div class="skill-category">
-                    <h3>软技能</h3>
                     <div class="skill-item">
-                        <div class="skill-name">技能1</div>
+                        <div class="skill-name">MATLAB</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 85%"></div>
                         </div>
                     </div>
-                    <!-- 可以添加更多软技能 -->
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>专业领域</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">嵌入式系统开发</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">视觉算法开发</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">通信协议开发</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,21 +179,36 @@
             <h2>项目经验</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>项目名称</h3>
-                    <p class="date">2023</p>
-                    <p class="description">项目描述</p>
+                    <h3>电弧检测算法研发项目</h3>
+                    <p class="date">2021.7 - 2023.10</p>
+                    <p class="description">与米兰理工大学合作的检测类算法开发项目</p>
                     <ul class="project-details">
-                        <li>项目职责1</li>
-                        <li>项目职责2</li>
-                        <li>项目职责3</li>
+                        <li>负责算法设计和嵌入式软件设计</li>
+                        <li>使用MATLAB-SIMULINK进行算法仿真</li>
+                        <li>在TI-DSP28033上实现算法移植</li>
+                        <li>获得两项发明专利</li>
                     </ul>
                     <div class="tech-stack">
-                        <span class="tech-tag">技术1</span>
-                        <span class="tech-tag">技术2</span>
-                        <span class="tech-tag">技术3</span>
+                        <span class="tech-tag">DSP</span>
+                        <span class="tech-tag">MATLAB</span>
+                        <span class="tech-tag">C++</span>
                     </div>
                 </div>
-                <!-- 可以添加更多项目 -->
+                <div class="project-card">
+                    <h3>AGV控制系统开发</h3>
+                    <p class="date">2023 - 至今</p>
+                    <p class="description">智能AGV系统的核心控制系统开发</p>
+                    <ul class="project-details">
+                        <li>开发机器人控制模型，实现精确运动控制</li>
+                        <li>实现多机协同控制算法</li>
+                        <li>开发基于视觉的精确定位系统</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">视觉算法</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -155,19 +220,11 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    <a href="mailto:417795841@qq.com">417795841@qq.com</a>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
-                    <a href="tel:+1234567890">123-456-7890</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="#" target="_blank">LinkedIn</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="#" target="_blank">GitHub</a>
+                    <a href="tel:18250688552">18250688552</a>
                 </div>
             </div>
         </div>
@@ -176,7 +233,7 @@
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 个人简历. All rights reserved.</p>
+            <p>&copy; 2024 洪泽平的个人简历. All rights reserved.</p>
         </div>
     </footer>
 
