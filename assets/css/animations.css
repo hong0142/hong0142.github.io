@@ -1,0 +1,106 @@
+/* 导航栏动画 */
+.navbar {
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 章节动画 */
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 头像动画 */
+.profile-image img {
+    transition: transform 0.5s ease;
+}
+
+.profile-image img:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* 技能条动画 */
+.skill-level {
+    width: 0;
+    transition: width 1.5s ease-in-out;
+}
+
+.skill-item.animate .skill-level {
+    width: var(--skill-percent);
+}
+
+/* 时间线动画 */
+.timeline-item {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.timeline-item:nth-child(even) {
+    transform: translateX(50px);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 项目卡片动画 */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 联系方式图标动画 */
+.contact-item i {
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover i {
+    transform: scale(1.2);
+}
+
+/* 导航链接动画 */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 技能标签动画 */
+.tech-tag {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tech-tag:hover {
+    transform: scale(1.1);
+    background-color: var(--secondary-color);
+    color: white;
+} 
