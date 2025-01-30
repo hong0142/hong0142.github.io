@@ -20,10 +20,43 @@ class ChatBot {
 
         // 创建聊天界面
         this.createChatInterface();
+        // 创建聊天入口
+        this.createChatTrigger();
+        // 添加事件监听
         this.attachEventListeners();
         
         // 发送欢迎消息
         this.addMessage('bot', '你好！我是洪泽平的AI助手，很高兴为您服务。您可以询问我关于简历中的任何问题。');
+    }
+
+    createChatTrigger() {
+        // 创建聊天图标
+        const trigger = document.createElement('div');
+        trigger.className = 'chat-trigger';
+        trigger.innerHTML = '<i class="fas fa-robot"></i>';
+        
+        // 创建提示文字
+        const hint = document.createElement('div');
+        hint.className = 'chat-hint';
+        hint.textContent = '我知道所有的简历信息，快来问我吧！';
+        
+        // 添加到页面
+        document.body.appendChild(trigger);
+        document.body.appendChild(hint);
+        
+        // 点击事件
+        trigger.addEventListener('click', () => {
+            this.container.classList.toggle('open');
+            if (this.container.classList.contains('open')) {
+                hint.style.display = 'none';
+                // 如果是第一次打开，显示欢迎消息
+                if (this.messages.children.length === 0) {
+                    this.addMessage('bot', '你好！我是洪泽平的AI助手，很高兴为您服务。您可以询问我关于简历中的任何问题。');
+                }
+            } else {
+                hint.style.display = 'block';
+            }
+        });
     }
 
     createChatInterface() {
@@ -36,7 +69,7 @@ class ChatBot {
             <div class="chat-header">
                 <h3>AI助手</h3>
                 <button class="chat-toggle">
-                    <i class="fas fa-chevron-up"></i>
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="chat-messages"></div>
