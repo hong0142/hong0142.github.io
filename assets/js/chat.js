@@ -102,9 +102,9 @@ class ChatBot {
                 </button>
             </div>
             <div class="chat-messages"></div>
-            <div class="chat-input">
+            <div class="chat-input-container">
                 <input type="text" placeholder="请输入您的问题..." />
-                <button>发送</button>
+                <button class="send-button">发送</button>
             </div>
         `;
 
@@ -114,27 +114,28 @@ class ChatBot {
         // 获取元素引用
         this.messages = this.container.querySelector('.chat-messages');
         this.input = this.container.querySelector('input');
-        this.sendButton = this.container.querySelector('button');
+        this.sendButton = this.container.querySelector('.send-button');
         this.toggleButton = this.container.querySelector('.chat-toggle');
     }
 
     attachEventListeners() {
         // 发送按钮点击事件
-        this.sendButton.addEventListener('click', () => this.handleSend());
+        this.sendButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await this.handleSend();
+        });
 
         // 输入框回车事件
-        this.input.addEventListener('keypress', (e) => {
+        this.input.addEventListener('keypress', async (e) => {
             if (e.key === 'Enter') {
-                this.handleSend();
+                e.preventDefault();
+                await this.handleSend();
             }
         });
 
         // 切换聊天窗口
         this.toggleButton.addEventListener('click', () => {
             this.container.classList.toggle('open');
-            const icon = this.toggleButton.querySelector('i');
-            icon.classList.toggle('fa-chevron-up');
-            icon.classList.toggle('fa-chevron-down');
         });
     }
 
@@ -159,6 +160,10 @@ class ChatBot {
         const message = this.input.value.trim();
         if (!message || this.isTyping) return;
 
+        // 禁用输入和发送按钮，防止重复发送
+        this.input.disabled = true;
+        this.sendButton.disabled = true;
+
         // 清空输入框
         this.input.value = '';
 
@@ -182,9 +187,13 @@ class ChatBot {
             console.error('API调用失败:', error);
             typingIndicator.remove();
             this.addMessage('bot', '抱歉，我遇到了一些问题，请稍后再试。');
+        } finally {
+            // 重新启用输入和发送按钮
+            this.input.disabled = false;
+            this.sendButton.disabled = false;
+            this.isTyping = false;
+            this.input.focus();
         }
-
-        this.isTyping = false;
     }
 
     async callKimiAPI(message) {
