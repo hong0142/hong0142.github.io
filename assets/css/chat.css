@@ -249,11 +249,12 @@
     bottom: 100px;
     right: 100px;
     background: white;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     font-size: 14px;
     color: #2c3e50;
+    max-width: 200px;
     animation: bounce 2s infinite;
     z-index: 998;
 }
@@ -267,10 +268,99 @@
     content: '';
     position: absolute;
     bottom: -8px;
-    right: 20px;
+    right: 30px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid white;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .chat-container {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        border-radius: 0;
+    }
+
+    .chat-trigger {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .chat-hint {
+        bottom: 90px;
+        right: 80px;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .chat-container {
+        background: #1a1a1a;
+    }
+
+    .chat-header {
+        background: #2c3e50;
+    }
+
+    .chat-messages {
+        background: #1a1a1a;
+    }
+
+    .message.bot {
+        background: #2c3e50;
+        color: #f1f3f5;
+    }
+
+    .chat-input-container {
+        background: #2c3e50;
+        border-top-color: #34495e;
+    }
+
+    .chat-input-container input {
+        background: #1a1a1a;
+        border-color: #34495e;
+        color: #f1f3f5;
+    }
+
+    .chat-input-container input::placeholder {
+        color: #95a5a6;
+    }
+
+    .chat-hint {
+        background: #2c3e50;
+        color: #f1f3f5;
+    }
+
+    .chat-hint:before {
+        border-top-color: #2c3e50;
+    }
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+    .chat-container,
+    .chat-trigger,
+    .chat-toggle,
+    .chat-hint {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .chat-container,
+    .chat-trigger,
+    .chat-hint {
+        display: none !important;
+    }
 } 

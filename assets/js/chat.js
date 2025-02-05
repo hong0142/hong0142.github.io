@@ -12,7 +12,7 @@ class ChatBot {
     async init() {
         // 加载简历内容作为上下文
         try {
-            const response = await fetch('docs/resume.md');
+            const response = await fetch('docs/personal_resume.md');
             if (!response.ok) {
                 throw new Error('无法加载简历内容');
             }
@@ -20,31 +20,19 @@ class ChatBot {
             console.log('简历内容加载成功:', this.context.slice(0, 100) + '...'); // 调试用
         } catch (error) {
             console.error('加载简历内容失败:', error);
-            this.context = `# 洪泽平的个人简历
-
-## 基本信息
-- 姓名：洪泽平
-- 职位：嵌入式开发工程师 | 视觉算法工程师
-- 联系电话：18250688552
-- 电子邮箱：417795841@qq.com
-
-## 个人简介
-具有丰富的嵌入式开发经验，专注于DSP开发和视觉算法开发。在航空电器领域有深入研究，主导过多个重要项目的开发。擅长C/C++编程，具备算法优化和系统架构设计能力。
-
-## 专利成果
-1. CN116381437A - 电弧检测相关专利
-2. CN116413558A - 电弧检测相关专利
-
-## 工作经验
-### AGV系统与视觉算法开发（2023-至今）
-- 主导AGV系统开发，实现机器人控制、通信、任务管理等核心功能
-- 开发视觉算法系统，实现mAP50达0.734，推理速度<100ms/帧
-- 设计并实现基于RS485、CANopen和WLAN的多层通信架构
-
-### 上海航空电器有限公司（2021.3-2023.10）
-- 负责电弧检测算法研发项目，带领9人团队完成算法开发与实验室建设
-- 主导某型号飞机二次配电设备项目的软件开发，实现DO178c标准的代码编写
-- 以第一发明人身份发表2篇项目专利（CN116381437A、CN116413558A）`;
+            // 尝试备用路径
+            try {
+                const backupResponse = await fetch('docs/resume.md');
+                if (backupResponse.ok) {
+                    this.context = await backupResponse.text();
+                    console.log('从备用路径加载简历成功');
+                } else {
+                    throw new Error('备用路径也无法访问');
+                }
+            } catch (backupError) {
+                console.error('备用路径加载失败:', backupError);
+                this.context = null;
+            }
         }
 
         // 创建聊天界面
@@ -54,8 +42,12 @@ class ChatBot {
         // 添加事件监听
         this.attachEventListeners();
         
-        // 发送欢迎消息
-        this.addMessage('bot', '你好！我是洪泽平的AI助手，很高兴为您服务。您可以询问我关于简历中的任何问题。');
+        // 根据简历加载状态发送不同的欢迎消息
+        if (this.context) {
+            this.addMessage('bot', '你好！我是洪泽平的AI助手，很高兴为您服务。您可以询问我关于简历中的任何问题。');
+        } else {
+            this.addMessage('bot', '抱歉，目前无法加载简历内容。请稍后再试或联系网站管理员。');
+        }
     }
 
     createChatTrigger() {
@@ -186,7 +178,7 @@ class ChatBot {
         } catch (error) {
             console.error('API调用失败:', error);
             typingIndicator.remove();
-            this.addMessage('bot', '抱歉，我遇到了一些问题，请稍后再试。');
+            this.addMessage('bot', '抱歉，服务器暂时无法响应，请稍后再试。如果问题持续存在，请直接联系我的邮箱：417795841@qq.com');
         } finally {
             // 重新启用输入和发送按钮
             this.input.disabled = false;
@@ -202,7 +194,7 @@ class ChatBot {
 
         // 确保上下文内容已加载
         if (!this.context) {
-            return '抱歉，我暂时无法访问简历内容，请稍后再试。';
+            return '抱歉，我暂时无法访问简历内容，请刷新页面或稍后再试。';
         }
 
         try {
@@ -230,6 +222,11 @@ ${this.context}
 4. 说话风格要专业、自信但不傲慢，体现出一个资深工程师的特点
 5. 特别注意：我拥有2项专利成果（CN116381437A和CN116413558A），都是电弧检测相关的专利，并且我是第一发明人
 6. 回答专利相关问题时，必须明确提到专利号和类型
+7. 回答时要注意突出以下关键项目经验：
+   - AGV智能控制系统项目（2024-至今）
+   - 视觉算法系统项目（2024）
+   - 电弧检测算法项目（2021.7-2023.10）
+   - AI文档处理系统项目（2023.10-2024.2）
 
 重要提示：请先仔细阅读上述简历内容，确保理解所有信息后再回答问题。每次回答前都要检查简历内容，确保回答准确无误。`
                         },
@@ -238,7 +235,8 @@ ${this.context}
                             content: message
                         }
                     ],
-                    temperature: 0.3
+                    temperature: 0.3,
+                    max_tokens: 1000
                 })
             });
 
@@ -249,8 +247,8 @@ ${this.context}
             const data = await response.json();
             return data.choices[0].message.content;
         } catch (error) {
-            console.error('KIMI API调用失败:', error);
-            throw error;
+            console.error('API调用失败:', error);
+            return '抱歉，服务器暂时无法响应，请稍后再试。如果问题持续存在，请直接联系我的邮箱：417795841@qq.com';
         }
     }
 }
