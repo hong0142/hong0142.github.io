@@ -66,6 +66,17 @@
     }
 }
 
+@keyframes slideInBottom {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .timeline-item {
     opacity: 0;
     transform: translateZ(0);
@@ -73,12 +84,37 @@
     backface-visibility: hidden;
 }
 
-.timeline-item:nth-child(odd).animate {
-    animation: slideInLeft 0.8s ease forwards;
+/* PC端动画 */
+@media screen and (min-width: 768px) {
+    .timeline-item:nth-child(odd).animate {
+        animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    .timeline-item:nth-child(even).animate {
+        animation: slideInRight 0.8s ease forwards;
+    }
 }
 
-.timeline-item:nth-child(even).animate {
-    animation: slideInRight 0.8s ease forwards;
+/* 移动端动画 */
+@media screen and (max-width: 767px) {
+    .timeline-item.animate {
+        animation: slideInBottom 0.8s ease forwards;
+    }
+}
+
+/* 时间线内容悬停效果 */
+@media screen and (min-width: 768px) {
+    .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .timeline-content:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
 }
 
 /* 展开/收起动画 */
@@ -104,11 +140,6 @@
 /* 悬停效果 */
 .timeline-content {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* 图片和视频展示动画 */
