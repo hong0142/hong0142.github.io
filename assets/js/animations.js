@@ -100,27 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (content.classList.contains('active')) {
                 // 收起内容
-                content.style.display = 'none';
                 content.classList.remove('active');
                 this.textContent = '查看详情';
                 
-                // 移除已加载的视频
-                const videoContainers = content.querySelectorAll('.video-container');
-                videoContainers.forEach(container => {
-                    const video = container.querySelector('video');
-                    if (video) {
-                        video.pause();
-                        video.remove();
-                    }
-                    // 恢复占位符
-                    const placeholder = container.querySelector('.video-placeholder');
-                    if (placeholder) {
-                        placeholder.style.display = 'flex';
-                    }
-                });
+                // 等待动画完成后再隐藏内容
+                setTimeout(() => {
+                    content.style.display = 'none';
+                    // 移除已加载的视频
+                    const videoContainers = content.querySelectorAll('.video-container');
+                    videoContainers.forEach(container => {
+                        const video = container.querySelector('video');
+                        if (video) {
+                            video.pause();
+                            video.remove();
+                        }
+                        // 恢复占位符
+                        const placeholder = container.querySelector('.video-placeholder');
+                        if (placeholder) {
+                            placeholder.style.display = 'flex';
+                        }
+                    });
+                }, 300); // 与CSS动画时间匹配
             } else {
                 // 展开内容
                 content.style.display = 'block';
+                // 触发重排以确保动画生效
+                content.offsetHeight;
                 content.classList.add('active');
                 this.textContent = '收起详情';
                 
@@ -133,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         if (placeholder && dataSrc) {
                             placeholder.addEventListener('click', function() {
+                                if (container.querySelector('video')) return; // 防止重复创建视频元素
+                                
                                 // 创建加载指示器
                                 const loadingDiv = document.createElement('div');
                                 loadingDiv.className = 'video-loading';
@@ -150,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                                 video.addEventListener('error', () => {
                                     loadingDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> 加载失败';
+                                    setTimeout(() => loadingDiv.remove(), 2000);
                                 });
                                 
                                 video.src = dataSrc;

@@ -82,40 +82,23 @@
 }
 
 /* 展开/收起动画 */
-@keyframes expandContent {
-    from {
-        max-height: 0;
-        opacity: 0;
-    }
-    to {
-        max-height: 1000px;
-        opacity: 1;
-    }
-}
-
-@keyframes collapseContent {
-    from {
-        max-height: 1000px;
-        opacity: 1;
-    }
-    to {
-        max-height: 0;
-        opacity: 0;
-    }
-}
-
 .collapsible-content {
     transform-origin: top;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
-}
-
-.collapsible-content.active {
-    transform: scaleY(1);
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+    will-change: transform, opacity;
 }
 
 .collapsible-content:not(.active) {
     transform: scaleY(0);
+    opacity: 0;
+    max-height: 0;
+}
+
+.collapsible-content.active {
+    transform: scaleY(1);
+    opacity: 1;
+    max-height: 2000px; /* 根据内容调整 */
 }
 
 /* 悬停效果 */
@@ -316,6 +299,11 @@
     border-radius: 8px;
     overflow: hidden;
     aspect-ratio: 16/9;
+    transition: transform 0.3s ease;
+}
+
+.video-container:hover {
+    transform: scale(1.02);
 }
 
 .video-placeholder {
