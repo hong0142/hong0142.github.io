@@ -104,15 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.classList.remove('active');
                 this.textContent = '查看详情';
                 
-                // 移除已加载的媒体资源
-                const mediaElements = content.querySelectorAll('img, video');
-                mediaElements.forEach(element => {
-                    if (element.tagName === 'VIDEO') {
-                        element.pause();
-                        element.removeAttribute('src');
-                        element.load();
+                // 移除已加载的视频
+                const videoContainers = content.querySelectorAll('.video-container');
+                videoContainers.forEach(container => {
+                    const video = container.querySelector('video');
+                    if (video) {
+                        video.pause();
+                        video.remove();
                     }
-                    element.removeAttribute('src');
+                    // 恢复占位符
+                    const placeholder = container.querySelector('.video-placeholder');
+                    if (placeholder) {
+                        placeholder.style.display = 'flex';
+                    }
                 });
             } else {
                 // 展开内容
@@ -120,41 +124,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.classList.add('active');
                 this.textContent = '收起详情';
                 
-                // 仅在首次点击时加载媒体资源
+                // 仅在首次点击时初始化视频容器
                 if (isFirstClick) {
-                    const mediaElements = content.querySelectorAll('.lazy-media');
-                    mediaElements.forEach(element => {
-                        const dataSrc = element.getAttribute('data-src');
-                        if (dataSrc) {
-                            if (element.tagName === 'VIDEO') {
-                                // 为视频添加加载中提示
+                    const videoContainers = content.querySelectorAll('.video-container');
+                    videoContainers.forEach(container => {
+                        const placeholder = container.querySelector('.video-placeholder');
+                        const dataSrc = container.getAttribute('data-src');
+                        
+                        if (placeholder && dataSrc) {
+                            placeholder.addEventListener('click', function() {
+                                // 创建加载指示器
                                 const loadingDiv = document.createElement('div');
-                                loadingDiv.className = 'loading-indicator';
+                                loadingDiv.className = 'video-loading';
                                 loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 加载中...';
-                                element.parentNode.insertBefore(loadingDiv, element);
+                                container.appendChild(loadingDiv);
                                 
-                                // 视频加载完成后移除加载提示
-                                element.addEventListener('loadeddata', () => {
+                                // 创建视频元素
+                                const video = document.createElement('video');
+                                video.className = 'lazy-media';
+                                video.controls = true;
+                                video.addEventListener('loadeddata', () => {
                                     loadingDiv.remove();
+                                    video.classList.add('loaded');
+                                    placeholder.style.display = 'none';
+                                });
+                                video.addEventListener('error', () => {
+                                    loadingDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> 加载失败';
                                 });
                                 
-                                element.src = dataSrc;
-                                element.load();
-                            } else if (element.tagName === 'IMG') {
-                                // 为图片添加加载中提示
-                                const loadingDiv = document.createElement('div');
-                                loadingDiv.className = 'loading-indicator';
-                                loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                                element.parentNode.insertBefore(loadingDiv, element);
-                                
-                                const img = new Image();
-                                img.onload = function() {
-                                    element.src = dataSrc;
-                                    element.classList.add('loaded');
-                                    loadingDiv.remove();
-                                };
-                                img.src = dataSrc;
-                            }
+                                video.src = dataSrc;
+                                container.appendChild(video);
+                            });
                         }
                     });
                     isFirstClick = false;
