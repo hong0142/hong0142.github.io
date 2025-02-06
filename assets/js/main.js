@@ -65,4 +65,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 页面加载动画
     document.body.classList.add('loaded');
-}); 
+
+    // 折叠面板功能
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    // 模态框功能
+    initializeModal();
+});
+
+// 模态框功能
+function initializeModal() {
+    const modal = document.getElementById('mediaModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = document.getElementsByClassName('modal-close')[0];
+
+    // 关闭模态框
+    function closeModal() {
+        modal.style.display = "none";
+        if (modalContent.tagName === 'VIDEO') {
+            modalContent.pause();
+        }
+    }
+
+    // 点击关闭按钮
+    closeBtn.onclick = closeModal;
+
+    // 点击模态框外部关闭
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // 打开模态框
+    document.querySelectorAll('.showcase-item').forEach(item => {
+        item.onclick = function() {
+            const mediaType = this.dataset.type;
+            const mediaSrc = this.dataset.src;
+            
+            modal.style.display = "block";
+            
+            if (mediaType === 'video') {
+                modalContent.innerHTML = `<video controls><source src="${mediaSrc}" type="video/mp4"></video>`;
+            } else {
+                modalContent.innerHTML = `<img src="${mediaSrc}" alt="项目展示">`;
+            }
+        }
+    });
+} 

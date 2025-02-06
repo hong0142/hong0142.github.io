@@ -66,4 +66,93 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// 处理时间线动画
+document.addEventListener('DOMContentLoaded', () => {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const collapsibles = document.querySelectorAll('.collapsible');
+    
+    // 初始化Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    // 观察所有时间线项目
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+
+    // 处理展开/收起功能
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                this.textContent = '查看详情';
+            } else {
+                content.classList.add('active');
+                this.textContent = '收起详情';
+            }
+        });
+    });
+
+    // 处理项目展示图片和视频
+    const showcaseItems = document.querySelectorAll('.showcase-item');
+    showcaseItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const modal = document.getElementById('mediaModal');
+            const modalContent = document.getElementById('modalContent');
+            const type = this.getAttribute('data-type');
+            const src = this.getAttribute('data-src');
+            
+            modalContent.innerHTML = '';
+            
+            if (type === 'image') {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = this.querySelector('.showcase-caption').textContent;
+                modalContent.appendChild(img);
+            } else if (type === 'video') {
+                const video = document.createElement('video');
+                video.src = src;
+                video.controls = true;
+                video.autoplay = true;
+                modalContent.appendChild(video);
+            }
+            
+            modal.style.display = 'block';
+        });
+    });
+
+    // 关闭模态框
+    const closeBtn = document.querySelector('.modal-close');
+    const modal = document.getElementById('mediaModal');
+    
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        const video = modal.querySelector('video');
+        if (video) {
+            video.pause();
+        }
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            const video = modal.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        }
+    });
 }); 

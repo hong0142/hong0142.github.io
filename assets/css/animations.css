@@ -40,19 +40,106 @@
 }
 
 /* 时间线动画 */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .timeline-item {
     opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s ease-out;
 }
 
-.timeline-item:nth-child(even) {
-    transform: translateX(50px);
+.timeline-item:nth-child(odd).animate {
+    animation: slideInLeft 0.8s ease forwards;
 }
 
+.timeline-item:nth-child(even).animate {
+    animation: slideInRight 0.8s ease forwards;
+}
+
+/* 展开/收起动画 */
+@keyframes expandContent {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 1000px;
+        opacity: 1;
+    }
+}
+
+@keyframes collapseContent {
+    from {
+        max-height: 1000px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+.collapsible-content.active {
+    animation: expandContent 0.5s ease-out forwards;
+}
+
+.collapsible-content:not(.active) {
+    animation: collapseContent 0.5s ease-in forwards;
+}
+
+/* 悬停效果 */
+.timeline-content {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 图片和视频展示动画 */
+.showcase-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 按钮动画 */
+.collapsible {
+    transition: all 0.3s ease;
+}
+
+.collapsible:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 滚动触发动画 */
 .timeline-item.visible {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
 }
 
 /* 项目卡片动画 */

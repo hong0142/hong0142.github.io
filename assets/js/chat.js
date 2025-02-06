@@ -59,7 +59,7 @@ class ChatBot {
         // 创建提示文字
         const hint = document.createElement('div');
         hint.className = 'chat-hint';
-        hint.textContent = '我知道所有的简历信息，快来问我吧！';
+        hint.textContent = '你可以把我当作本人，我知道更加详细具体的简历信息，快来点击我了解项目的详细信息吧！';
         
         // 添加到页面
         document.body.appendChild(trigger);

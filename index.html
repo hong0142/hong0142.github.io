@@ -26,10 +26,9 @@
             <div class="logo">洪泽平的简历</div>
             <ul class="nav-links">
                 <li><a href="#about">关于我</a></li>
-                <li><a href="#education">教育背景</a></li>
                 <li><a href="#experience">工作经验</a></li>
+                <li><a href="#education">教育背景</a></li>
                 <li><a href="#skills">技能特长</a></li>
-                <li><a href="#projects">项目经验</a></li>
                 <li><a href="#contact">联系方式</a></li>
             </ul>
             <div class="menu-btn">
@@ -51,14 +50,328 @@
                 </div>
                 <div class="profile-info">
                     <h2>洪泽平</h2>
-                    <p class="title">嵌入式开发工程师 | 视觉算法工程师</p>
+                    <p class="title">高级软件工程师 | 算法工程师</p>
                     <p class="description">
-                        具有丰富的嵌入式开发经验，专注于DSP开发和视觉算法开发。在航空电器领域有深入研究，
-                        主导过多个重要项目的开发。擅长C/C++编程，具备算法优化和系统架构设计能力。
+                        资深工程师，专注于嵌入式系统开发（DSP/航空电子）、计算机视觉算法（深度学习）和工业自动化（AGV/PLC）领域。
+                        在航空电器领域有深入研究，主导多个重要项目开发。精通YOLO系列模型优化、EfficientViT网络集成，
+                        擅长模型轻量化和工程部署。具备跨领域开发经验和系统架构设计能力。
                     </p>
                     <div class="contact-brief">
                         <p><i class="fas fa-phone"></i> 18250688552</p>
                         <p><i class="fas fa-envelope"></i> 417795841@qq.com</p>
+                        <p><i class="fas fa-clock"></i> 工作年限：3年+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作与项目经验 -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>工作与项目经验</h2>
+            <div class="timeline">
+                <!-- AGV智能控制系统项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AGV智能控制系统项目</h3>
+                        <p class="date">2024 - 至今</p>
+                        <p class="position">技术负责人 | 漳州农智数控有限公司</p>
+                        <ul class="achievements">
+                            <li>主导AGV系统开发，实现机器人控制、通信、任务管理等核心功能</li>
+                            <li>设计并实现基于RS485、CANopen和WLAN的多层通信架构</li>
+                            <li>完成系统架构设计和核心模块开发</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>系统架构设计</h4>
+                                <ul>
+                                    <li>开发框架：WPF、.NET Framework、SQL Server</li>
+                                    <li>技术架构：MVVM（CommunityToolkit.Mvvm）</li>
+                                    <li>UI框架：MaterialDesignThemes.Wpf</li>
+                                    <li>依赖注入：Microsoft.Extensions.DependencyInjection</li>
+                                </ul>
+                                <h4>核心功能模块</h4>
+                                <ul>
+                                    <li>可视化监控：Canvas实现2D地图系统，多图层管理</li>
+                                    <li>AGV控制：智能任务分配，路径规划，避障策略</li>
+                                    <li>通信架构：WLAN、CANopen、RS485多层通信</li>
+                                    <li>任务调度：优先级管理，实时任务调整</li>
+                                </ul>
+                                <h4>技术亮点</h4>
+                                <ul>
+                                    <li>性能优化：异步通信处理，内存管理优化</li>
+                                    <li>系统可靠性：完善的异常处理，数据备份机制</li>
+                                    <li>监控告警：系统监控告警，自动恢复机制</li>
+                                </ul>
+                                <h4>项目展示</h4>
+                                <div class="project-showcase">
+                                    <div class="showcase-item" data-type="video" data-src="assets/media/agv-demo.mp4">
+                                        <video src="assets/media/agv-demo.mp4" muted>
+                                            <source src="assets/media/agv-demo.mp4" type="video/mp4">
+                                        </video>
+                                        <i class="fas fa-play play-icon"></i>
+                                        <div class="showcase-caption">AGV系统演示</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 视觉算法系统项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>视觉算法系统项目</h3>
+                        <p class="date">2024 - 至今</p>
+                        <p class="position">算法工程师 | 漳州农智数控有限公司</p>
+                        <ul class="achievements">
+                            <li>开发工业视觉检测算法系统，实现自动标注和样本库管理</li>
+                            <li>优化特征提取网络，提升检测精度和推理性能</li>
+                            <li>开发基于PyQt的图像处理界面和性能分析工具</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>算法开发</h4>
+                                <ul>
+                                    <li>数据集建设：自动标注软件实现，样本库管理</li>
+                                    <li>特征提取网络：EfficientViT和Fasternet网络集成</li>
+                                    <li>检测头优化：BIFPN多模式特征融合，AFPN优化</li>
+                                    <li>性能优化：C2f系列改进，注意力机制增强</li>
+                                </ul>
+                                <h4>工程实践</h4>
+                                <ul>
+                                    <li>模型轻量化和推理加速</li>
+                                    <li>多设备适配和部署优化</li>
+                                    <li>自动化测试和性能评估</li>
+                                </ul>
+                                <h4>UI界面开发</h4>
+                                <ul>
+                                    <li>基于PyQt的图像处理界面</li>
+                                    <li>检测结果可视化展示</li>
+                                    <li>性能分析工具集成（FPS测试/热力图分析）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI文档处理系统项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI文档处理系统项目</h3>
+                        <p class="date">2023.10 - 2024.2</p>
+                        <p class="position">全栈开发工程师 | 个人项目</p>
+                        <ul class="achievements">
+                            <li>设计并实现文档自动化处理系统的整体架构</li>
+                            <li>开发高性能文档处理引擎，处理时间≤1s/文档</li>
+                            <li>实现完整的测试覆盖和性能监控体系</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>系统架构</h4>
+                                <ul>
+                                    <li>系统支持模块：异常处理、配置管理、日志服务</li>
+                                    <li>文档管理模块：文档服务、存储管理、状态管理</li>
+                                    <li>排版处理模块：布局处理、格式验证、样式优化</li>
+                                </ul>
+                                <h4>技术实现</h4>
+                                <ul>
+                                    <li>异常处理服务（处理时间≤500ms）</li>
+                                    <li>配置管理服务（读取≤100ms）</li>
+                                    <li>日志服务（批量写入≥1000条/秒）</li>
+                                    <li>监控服务（采集延迟≤200ms）</li>
+                                </ul>
+                                <h4>性能优化</h4>
+                                <ul>
+                                    <li>文档处理性能：≤1s/文档</li>
+                                    <li>存储访问优化：读取≤200ms</li>
+                                    <li>缓存系统：命中率≥80%</li>
+                                    <li>并发处理：≥10个并发请求</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 电弧检测算法项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>电弧检测算法项目</h3>
+                        <p class="date">2021.7 - 2023.10</p>
+                        <p class="position">项目负责人 | 上海航空电器有限公司</p>
+                        <ul class="achievements">
+                            <li>带领9人团队完成电弧检测算法研发与实验室建设</li>
+                            <li>获得两项发明专利（CN116381437A、CN116413558A）</li>
+                            <li>完成AS5692标准实验验证和DSP平台部署</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>技术框架</h4>
+                                <ul>
+                                    <li>仿真平台：MATLAB-SIMULINK</li>
+                                    <li>嵌入式平台：DSP28033</li>
+                                    <li>实验标准：AS5692</li>
+                                </ul>
+                                <h4>项目管理</h4>
+                                <ul>
+                                    <li>团队管理经验</li>
+                                    <li>国际合作经历</li>
+                                    <li>项目进度管理</li>
+                                </ul>
+                                <h4>项目展示</h4>
+                                <div class="project-showcase">
+                                    <div class="showcase-item" data-type="image" data-src="assets/images/patent1.jpg">
+                                        <img src="assets/images/patent1.jpg" alt="专利证书1">
+                                        <div class="showcase-caption">专利证书 CN116381437A</div>
+                                    </div>
+                                    <div class="showcase-item" data-type="image" data-src="assets/images/patent2.jpg">
+                                        <img src="assets/images/patent2.jpg" alt="专利证书2">
+                                        <div class="showcase-caption">专利证书 CN116413558A</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 飞机二次配电设备项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>飞机二次配电设备项目</h3>
+                        <p class="date">2021.5 - 2023.10</p>
+                        <p class="position">嵌入式开发工程师 | 上海航空电器有限公司</p>
+                        <ul class="achievements">
+                            <li>主导飞机二次配电设备软件开发，符合DO178c标准</li>
+                            <li>完成系统开发文档编写（SYRD/SRD/SDD）</li>
+                            <li>实现通信协议设计和裸机驱动开发</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>项目概述</h4>
+                                <ul>
+                                    <li>项目类型：非OS嵌入式开发</li>
+                                    <li>开发平台：DSP28335</li>
+                                    <li>开发规范：DO178c航空软件认证标准</li>
+                                </ul>
+                                <h4>技术框架</h4>
+                                <ul>
+                                    <li>裸机驱动开发</li>
+                                    <li>通信协议：CAN/SPI</li>
+                                    <li>中断管理与任务调度</li>
+                                </ul>
+                                <h4>项目职责</h4>
+                                <ul>
+                                    <li>系统开发文档编写（SYRD/SRD/SDD）</li>
+                                    <li>通信协议设计（CAN/SPI ICD）</li>
+                                    <li>模块代码开发</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 网络应用系统开发项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>网络应用系统开发项目</h3>
+                        <p class="date">2017 - 2018</p>
+                        <p class="position">全栈开发工程师 | 个人项目</p>
+                        <ul class="achievements">
+                            <li>设计并实现模块化架构的网络应用系统</li>
+                            <li>开发高性能异步IO处理机制</li>
+                            <li>实现多语言国际化支持系统</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>系统架构</h4>
+                                <ul>
+                                    <li>开发语言：Python 3.6</li>
+                                    <li>GUI开发：PyQt5界面框架</li>
+                                    <li>核心功能：异步IO处理、文档处理、多语言支持</li>
+                                </ul>
+                                <h4>技术实现</h4>
+                                <ul>
+                                    <li>异步IO处理（aiohttp 2.3）</li>
+                                    <li>文档处理（python-docx/Pillow）</li>
+                                    <li>多语言支持（googletrans）</li>
+                                </ul>
+                                <h4>性能优化</h4>
+                                <ul>
+                                    <li>异步IO提升吞吐量</li>
+                                    <li>多线程处理耗时操作</li>
+                                    <li>内存管理优化</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 新加坡莫仕电子实习项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>新加坡莫仕电子实习项目</h3>
+                        <p class="date">2017.1 - 2017.6</p>
+                        <p class="position">结构工程师实习生 | 新加坡莫仕电子</p>
+                        <ul class="achievements">
+                            <li>参与U型号连接器设计工作</li>
+                            <li>负责3D可视化部件绘制</li>
+                            <li>协助完成产品结构设计</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>工作内容</h4>
+                                <ul>
+                                    <li>U型号连接器设计协作</li>
+                                    <li>3D可视化部件绘制</li>
+                                    <li>产品结构优化</li>
+                                </ul>
+                                <h4>技术应用</h4>
+                                <ul>
+                                    <li>工具：Solidwork</li>
+                                    <li>领域：结构设计</li>
+                                    <li>技能：3D建模</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 电商平台开发项目 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>电商平台开发项目</h3>
+                        <p class="date">2017 - 2018</p>
+                        <p class="position">全栈开发工程师 | 个人项目</p>
+                        <ul class="achievements">
+                            <li>负责电商平台的前端设计和后端开发</li>
+                            <li>实现公众号平台功能开发</li>
+                            <li>完成平台运营和维护工作</li>
+                        </ul>
+                        <button class="collapsible">查看详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>技术框架</h4>
+                                <ul>
+                                    <li>前端：HTML + CSS</li>
+                                    <li>后端：PHP</li>
+                                    <li>平台：公众号</li>
+                                </ul>
+                                <h4>工作内容</h4>
+                                <ul>
+                                    <li>网站前端设计</li>
+                                    <li>后端功能实现</li>
+                                    <li>公众号运营维护</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +388,51 @@
                         <h3>新加坡南洋理工大学（NTU）</h3>
                         <p class="date">2013 - 2020</p>
                         <p>航天航空工程（AE）专业 学士学位</p>
-                        <p>主要课程：计算机思想(Python)、通用编程(C)、计算机辅助工程(C)</p>
+                        <p>前两年完成 Bridging Course，专注英语学习和演讲训练</p>
+                        <p>主要课程：航空动力学、飞行力学、航空结构力学、推进系统原理</p>
+                        <button class="collapsible">查看课程详情</button>
+                        <div class="collapsible-content">
+                            <div class="project-details-expanded">
+                                <h4>Bridging Course（2013-2015）</h4>
+                                <ul>
+                                    <li>学术英语写作 (Academic Writing)</li>
+                                    <li>专业英语演讲 (Professional Speaking)</li>
+                                    <li>工程英语交流 (Engineering Communication)</li>
+                                    <li>跨文化交际能力 (Cross-cultural Communication)</li>
+                                </ul>
+                                <h4>航空与机械核心课程（2015-2020）</h4>
+                                <ul>
+                                    <li>航空动力学基础 (Fundamentals of Aerodynamics)</li>
+                                    <li>飞行力学与控制 (Flight Mechanics and Control)</li>
+                                    <li>航空结构力学 (Aircraft Structural Mechanics)</li>
+                                    <li>推进系统原理 (Principles of Propulsion)</li>
+                                    <li>工程热力学 (Engineering Thermodynamics)</li>
+                                    <li>流体力学 (Fluid Mechanics)</li>
+                                    <li>机械设计 (Mechanical Design)</li>
+                                    <li>振动与控制 (Vibration and Control)</li>
+                                </ul>
+                                <h4>计算机相关课程</h4>
+                                <ul>
+                                    <li>计算机思想与编程 (Computing Thinking and Programming)</li>
+                                    <li>计算机辅助工程 (Computer Aided Engineering)</li>
+                                    <li>数值计算方法 (Numerical Methods)</li>
+                                </ul>
+                                <h4>实验与实践课程</h4>
+                                <ul>
+                                    <li>空气动力学实验 (Aerodynamics Laboratory)</li>
+                                    <li>飞行模拟器训练 (Flight Simulator Training)</li>
+                                    <li>航空系统集成实践 (Aerospace Systems Integration)</li>
+                                    <li>毕业设计项目 (Final Year Project)</li>
+                                </ul>
+                                <h4>工程基础课程</h4>
+                                <ul>
+                                    <li>工程数学 (Engineering Mathematics)</li>
+                                    <li>工程力学 (Engineering Mechanics)</li>
+                                    <li>材料科学 (Materials Science)</li>
+                                    <li>控制系统工程 (Control Systems Engineering)</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -90,46 +447,13 @@
         </div>
     </section>
 
-    <!-- 工作经验 -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2>工作经验</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>AGV系统与视觉算法开发</h3>
-                        <p class="date">2023 - 至今</p>
-                        <p class="position">技术负责人</p>
-                        <ul class="achievements">
-                            <li>主导AGV系统开发，实现机器人控制、通信、任务管理等核心功能</li>
-                            <li>开发视觉算法系统，实现mAP50达0.734，推理速度<100ms/帧</li>
-                            <li>设计并实现基于RS485、CANopen和WLAN的多层通信架构</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>上海航空电器有限公司</h3>
-                        <p class="date">2021.3 - 2023.10</p>
-                        <p class="position">软件工程师/嵌入式工程师</p>
-                        <ul class="achievements">
-                            <li>负责电弧检测算法研发项目，带领9人团队完成算法开发与实验室建设</li>
-                            <li>主导某型号飞机二次配电设备项目的软件开发，实现DO178c标准的代码编写</li>
-                            <li>以第一发明人身份发表2篇项目专利（CN116381437A、CN116413558A）</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 技能特长 -->
     <section id="skills" class="section">
         <div class="container">
             <h2>技能特长</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>专业技能</h3>
+                    <h3>编程语言</h3>
                     <div class="skill-item">
                         <div class="skill-name">C/C++</div>
                         <div class="skill-bar">
@@ -137,21 +461,51 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">DSP开发</div>
+                        <div class="skill-name">C#</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 90%"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">MATLAB</div>
+                        <div class="skill-name">Python</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 85%"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">Python</div>
+                        <div class="skill-name">PHP</div>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%"></div>
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>开发框架</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">WPF/MVVM</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PyQt</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>专业工具</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">MATLAB-SIMULINK</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Solidwork</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
                         </div>
                     </div>
                 </div>
@@ -164,56 +518,52 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">视觉算法开发</div>
+                        <div class="skill-name">计算机视觉算法</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 90%"></div>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">通信协议开发</div>
+                        <div class="skill-name">工业自动化</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">软件架构设计</div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 85%"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 项目经验 -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>项目经验</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>电弧检测算法研发项目</h3>
-                    <p class="date">2021.7 - 2023.10</p>
-                    <p class="description">与米兰理工大学合作的检测类算法开发项目</p>
-                    <ul class="project-details">
-                        <li>负责算法设计和嵌入式软件设计</li>
-                        <li>使用MATLAB-SIMULINK进行算法仿真</li>
-                        <li>在TI-DSP28033上实现算法移植</li>
-                        <li>获得两项发明专利</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">DSP</span>
-                        <span class="tech-tag">MATLAB</span>
-                        <span class="tech-tag">C++</span>
+                <div class="skill-category">
+                    <h3>通信协议</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">CAN/CANopen</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Modbus/RS485</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <h3>AGV控制系统开发</h3>
-                    <p class="date">2023 - 至今</p>
-                    <p class="description">智能AGV系统的核心控制系统开发</p>
-                    <ul class="project-details">
-                        <li>开发机器人控制模型，实现精确运动控制</li>
-                        <li>实现多机协同控制算法</li>
-                        <li>开发基于视觉的精确定位系统</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">视觉算法</span>
+                <div class="skill-category">
+                    <h3>技术标准</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">DO-178C</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AS5692</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,5 +600,11 @@
     <script src="assets/js/animations.js"></script>
     <!-- 聊天功能脚本 -->
     <script src="assets/js/chat.js"></script>
+
+    <!-- 模态框 -->
+    <div id="mediaModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div id="modalContent" class="modal-content"></div>
+    </div>
 </body>
 </html> 
