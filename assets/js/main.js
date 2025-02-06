@@ -82,6 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 模态框功能
     initializeModal();
+
+    // 延迟加载媒体资源
+    lazyLoadMedia();
 });
 
 // 模态框功能
@@ -93,9 +96,7 @@ function initializeModal() {
     // 关闭模态框
     function closeModal() {
         modal.style.display = "none";
-        if (modalContent.tagName === 'VIDEO') {
-            modalContent.pause();
-        }
+        modalContent.innerHTML = ''; // 清空内容，释放资源
     }
 
     // 点击关闭按钮
@@ -115,12 +116,102 @@ function initializeModal() {
             const mediaSrc = this.dataset.src;
             
             modal.style.display = "block";
+            modalContent.innerHTML = ''; // 清空之前的内容
+            
+            // 添加加载指示器
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading-indicator modal-loading';
+            loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 加载中...';
+            modalContent.appendChild(loadingDiv);
             
             if (mediaType === 'video') {
-                modalContent.innerHTML = `<video controls><source src="${mediaSrc}" type="video/mp4"></video>`;
+                const video = document.createElement('video');
+                video.addEventListener('loadeddata', () => {
+                    loadingDiv.remove();
+                    video.classList.add('loaded');
+                });
+                video.addEventListener('error', () => {
+                    loadingDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> 加载失败';
+                });
+                video.controls = true;
+                video.autoplay = true;
+                video.src = mediaSrc;
+                modalContent.appendChild(video);
             } else {
-                modalContent.innerHTML = `<img src="${mediaSrc}" alt="项目展示">`;
+                const img = new Image();
+                img.onload = function() {
+                    loadingDiv.remove();
+                    this.classList.add('loaded');
+                    modalContent.appendChild(this);
+                };
+                img.onerror = function() {
+                    loadingDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> 加载失败';
+                };
+                img.src = mediaSrc;
+                img.alt = this.querySelector('.showcase-caption').textContent;
             }
         }
     });
-} 
+}
+
+// 延迟加载媒体资源
+function lazyLoadMedia() {
+    const lazyMedias = document.querySelectorAll('.lazy-media[data-src]');
+    
+    const mediaObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const media = entry.target;
+                const src = media.getAttribute('data-src');
+                
+                if (media.tagName === 'VIDEO') {
+                    media.src = src;
+                    media.load();
+                } else if (media.tagName === 'IMG') {
+                    const img = new Image();
+                    img.onload = function() {
+                        media.src = src;
+                        media.classList.add('loaded');
+                    };
+                    img.src = src;
+                }
+                
+                media.removeAttribute('data-src');
+                observer.unobserve(media);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    lazyMedias.forEach(media => {
+        mediaObserver.observe(media);
+    });
+}
+
+// 优化展开/收起性能
+document.querySelectorAll('.collapsible').forEach(button => {
+    button.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        
+        // 在动画开始前计算高度
+        if (!content.classList.contains('active')) {
+            content.style.display = 'block';
+            const height = content.scrollHeight;
+            content.style.display = '';
+            
+            // 使用 requestAnimationFrame 确保在下一帧执行动画
+            requestAnimationFrame(() => {
+                content.style.height = height + 'px';
+                content.classList.add('active');
+            });
+        } else {
+            content.style.height = '0';
+            content.addEventListener('transitionend', function handler() {
+                content.classList.remove('active');
+                content.removeEventListener('transitionend', handler);
+            });
+        }
+    });
+}); 

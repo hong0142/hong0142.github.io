@@ -92,16 +92,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 处理展开/收起功能
     collapsibles.forEach(button => {
+        let isFirstClick = true;  // 标记是否是首次点击
+        
         button.addEventListener('click', function() {
             this.classList.toggle('active');
             const content = this.nextElementSibling;
             
             if (content.classList.contains('active')) {
+                // 收起内容
+                content.style.display = 'none';
                 content.classList.remove('active');
                 this.textContent = '查看详情';
+                
+                // 移除已加载的媒体资源
+                const mediaElements = content.querySelectorAll('img, video');
+                mediaElements.forEach(element => {
+                    if (element.tagName === 'VIDEO') {
+                        element.pause();
+                        element.removeAttribute('src');
+                        element.load();
+                    }
+                    element.removeAttribute('src');
+                });
             } else {
+                // 展开内容
+                content.style.display = 'block';
                 content.classList.add('active');
                 this.textContent = '收起详情';
+                
+                // 仅在首次点击时加载媒体资源
+                if (isFirstClick) {
+                    const mediaElements = content.querySelectorAll('.lazy-media');
+                    mediaElements.forEach(element => {
+                        const dataSrc = element.getAttribute('data-src');
+                        if (dataSrc) {
+                            if (element.tagName === 'VIDEO') {
+                                // 为视频添加加载中提示
+                                const loadingDiv = document.createElement('div');
+                                loadingDiv.className = 'loading-indicator';
+                                loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 加载中...';
+                                element.parentNode.insertBefore(loadingDiv, element);
+                                
+                                // 视频加载完成后移除加载提示
+                                element.addEventListener('loadeddata', () => {
+                                    loadingDiv.remove();
+                                });
+                                
+                                element.src = dataSrc;
+                                element.load();
+                            } else if (element.tagName === 'IMG') {
+                                // 为图片添加加载中提示
+                                const loadingDiv = document.createElement('div');
+                                loadingDiv.className = 'loading-indicator';
+                                loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                                element.parentNode.insertBefore(loadingDiv, element);
+                                
+                                const img = new Image();
+                                img.onload = function() {
+                                    element.src = dataSrc;
+                                    element.classList.add('loaded');
+                                    loadingDiv.remove();
+                                };
+                                img.src = dataSrc;
+                            }
+                        }
+                    });
+                    isFirstClick = false;
+                }
             }
         });
     });
@@ -115,22 +172,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const type = this.getAttribute('data-type');
             const src = this.getAttribute('data-src');
             
-            modalContent.innerHTML = '';
+            modal.style.display = 'block';
+            
+            // 添加加载中提示
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading-indicator modal-loading';
+            loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 加载中...';
+            modalContent.appendChild(loadingDiv);
             
             if (type === 'image') {
-                const img = document.createElement('img');
+                const img = new Image();
+                img.onload = function() {
+                    loadingDiv.remove();
+                    modalContent.appendChild(this);
+                };
                 img.src = src;
                 img.alt = this.querySelector('.showcase-caption').textContent;
-                modalContent.appendChild(img);
             } else if (type === 'video') {
                 const video = document.createElement('video');
+                video.addEventListener('loadeddata', () => {
+                    loadingDiv.remove();
+                });
                 video.src = src;
                 video.controls = true;
                 video.autoplay = true;
                 modalContent.appendChild(video);
             }
-            
-            modal.style.display = 'block';
         });
     });
 

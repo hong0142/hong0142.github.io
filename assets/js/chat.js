@@ -189,7 +189,11 @@ class ChatBot {
     }
 
     async callKimiAPI(message) {
-        const API_KEY = 'sk-I7LzcoUZXCsarClDKFBE8lt6rYdaGaY2pxV8wROEqgAdurGT';
+        const API_KEY = process.env.KIMI_API_KEY || '';  // 从环境变量读取API Key
+        if (!API_KEY) {
+            console.error('未配置API Key');
+            return '抱歉，系统配置有误，请联系管理员或发送邮件至：417795841@qq.com';
+        }
         const API_ENDPOINT = 'https://api.moonshot.cn/v1/chat/completions';
 
         // 确保上下文内容已加载
