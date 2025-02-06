@@ -66,14 +66,14 @@
     }
 }
 
-@keyframes slideInBottom {
+@keyframes fadeIn {
     from {
-        transform: translateY(50px);
         opacity: 0;
+        transform: translateY(20px);
     }
     to {
-        transform: translateY(0);
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -97,8 +97,32 @@
 
 /* 移动端动画 */
 @media screen and (max-width: 767px) {
+    .timeline-item {
+        transform: none;  /* 重置transform，防止位移 */
+    }
+    
     .timeline-item.animate {
-        animation: slideInBottom 0.8s ease forwards;
+        animation: fadeIn 0.5s ease forwards;
+    }
+    
+    /* 移动端时间线内容样式调整 */
+    .timeline-content {
+        margin-left: 0;
+        margin-right: 0;
+        transform: none !important; /* 防止内容位移 */
+    }
+    
+    /* 移动端悬停效果调整 */
+    .timeline-content:hover {
+        transform: none !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+}
+
+/* 章节动画调整 */
+@media screen and (max-width: 767px) {
+    .section {
+        transform: translateY(20px); /* 减小移动端的位移距离 */
     }
 }
 
@@ -107,13 +131,6 @@
     .timeline-content:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .timeline-content:hover {
-        transform: translateX(5px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 }
 
