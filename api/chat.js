@@ -77,17 +77,28 @@ ${context}
         });
 
         if (!response.ok) {
-            throw new Error('KIMI API 请求失败');
+            const errorText = await response.text();
+            console.error('KIMI API 错误响应:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: errorText
+            });
+            throw new Error(`KIMI API 请求失败: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
         return res.json({ response: data.choices[0].message.content });
 
     } catch (error) {
-        console.error('处理请求失败:', error);
+        console.error('处理请求失败:', {
+            error: error.message,
+            stack: error.stack,
+            timestamp: new Date().toISOString()
+        });
         return res.status(500).json({ 
             error: '服务器处理请求失败',
-            message: '抱歉，服务器暂时无法响应，请稍后再试。如果问题持续存在，请直接联系我的邮箱：417795841@qq.com'
+            message: '抱歉，服务器暂时无法响应，请稍后再试。如果问题持续存在，请直接联系我的邮箱：417795841@qq.com',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 }; 
