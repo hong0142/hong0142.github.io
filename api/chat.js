@@ -1,6 +1,11 @@
 // Vercel Serverless Function for handling chat requests
 const fetch = require('node-fetch');
 
+// 环境变量检查
+if (!process.env.KIMI_API_KEY) {
+    console.error('错误: 未设置 KIMI_API_KEY 环境变量');
+}
+
 module.exports = async (req, res) => {
     console.log('API 调用开始 - ' + new Date().toISOString());
     

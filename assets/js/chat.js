@@ -20,19 +20,8 @@ class ChatBot {
             console.log('简历内容加载成功:', this.context.slice(0, 100) + '...'); // 调试用
         } catch (error) {
             console.error('加载简历内容失败:', error);
-            // 尝试备用路径
-            try {
-                const backupResponse = await fetch('docs/resume.md');
-                if (backupResponse.ok) {
-                    this.context = await backupResponse.text();
-                    console.log('从备用路径加载简历成功');
-                } else {
-                    throw new Error('备用路径也无法访问');
-                }
-            } catch (backupError) {
-                console.error('备用路径加载失败:', backupError);
-                this.context = null;
-            }
+            this.context = null;
+            this.addMessage('bot', '抱歉，目前无法加载简历内容。请稍后再试或联系网站管理员。');
         }
 
         // 创建聊天界面
@@ -45,8 +34,6 @@ class ChatBot {
         // 根据简历加载状态发送不同的欢迎消息
         if (this.context) {
             this.addMessage('bot', '你好！我是洪泽平的AI助手，很高兴为您服务。您可以询问我关于简历中的任何问题。');
-        } else {
-            this.addMessage('bot', '抱歉，目前无法加载简历内容。请稍后再试或联系网站管理员。');
         }
     }
 
