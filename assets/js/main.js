@@ -243,4 +243,10 @@ async function recordVisit() {
     } catch (error) {
         console.error('记录访问信息失败:', error);
     }
-} 
+}
+
+// 页面加载完成时执行
+document.addEventListener('DOMContentLoaded', function() {
+    lazyLoadMedia();
+    recordVisit();
+}); 
