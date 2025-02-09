@@ -222,13 +222,24 @@ document.querySelectorAll('.collapsible').forEach(button => {
 // 记录访问信息
 async function recordVisit() {
     try {
-        await fetch('/api/visitor', {
+        const response = await fetch('/api/visitor', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                path: window.location.pathname,
+                timestamp: new Date().toISOString()
+            })
         });
-        console.log('访问记录已发送');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('访问记录已发送:', data);
     } catch (error) {
         console.error('记录访问信息失败:', error);
     }
