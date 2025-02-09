@@ -2,6 +2,8 @@
 const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
+    console.log('API 调用开始 - ' + new Date().toISOString());
+    
     // 设置 CORS 头
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
