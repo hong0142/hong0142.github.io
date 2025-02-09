@@ -20,6 +20,12 @@ module.exports = async (req, res) => {
     }
 
     try {
+        // 1. 验证请求参数
+        console.log('请求体:', {
+            message: req.body.message,
+            hasContext: !!req.body.context
+        });
+
         const { message, context } = req.body;
 
         // 验证必要的参数
@@ -27,25 +33,24 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: '缺少必要的参数' });
         }
 
-        // 从环境变量获取 API 密钥
+        // 2. 验证 API 密钥
         const API_KEY = process.env.KIMI_API_KEY;
+        console.log('API Key 状态:', {
+            exists: !!API_KEY,
+            length: API_KEY ? API_KEY.length : 0
+        });
+
         if (!API_KEY) {
             return res.status(500).json({ error: 'API 密钥未配置' });
         }
 
-        // 调用 KIMI API
-        const response = await fetch('https://api.moonshot.cn/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
-            },
-            body: JSON.stringify({
-                model: "moonshot-v1-8k",
-                messages: [
-                    {
-                        role: "system",
-                        content: `你是洪泽平简历的智能助手，请仔细阅读以下简历内容，并严格按照内容回答问题。
+        // 3. API 请求详情
+        const requestBody = {
+            model: "moonshot-v1-8k",
+            messages: [
+                {
+                    role: "system",
+                    content: `你是洪泽平简历的智能助手，请仔细阅读以下简历内容，并严格按照内容回答问题。
 
 ===== 简历内容开始 =====
 ${context}
@@ -65,33 +70,59 @@ ${context}
    - AI文档处理系统项目（2023.10-2024.2）
 
 重要提示：请先仔细阅读上述简历内容，确保理解所有信息后再回答问题。每次回答前都要检查简历内容，确保回答准确无误。`
-                    },
-                    {
-                        role: "user",
-                        content: message
-                    }
-                ],
-                temperature: 0.3,
-                max_tokens: 1000
-            })
+                },
+                {
+                    role: "user",
+                    content: message
+                }
+            ],
+            temperature: 0.3,
+            max_tokens: 1000
+        };
+
+        console.log('API 请求体结构:', {
+            hasModel: !!requestBody.model,
+            messagesCount: requestBody.messages.length,
+            temperature: requestBody.temperature
+        });
+
+        // 4. 发送请求并记录结果
+        const response = await fetch('https://api.moonshot.cn/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        console.log('API 响应状态:', {
+            status: response.status,
+            statusText: response.statusText,
+            ok: response.ok
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('KIMI API 错误响应:', {
+            console.error('KIMI API 错误详情:', {
                 status: response.status,
                 statusText: response.statusText,
                 error: errorText
             });
-            throw new Error(`KIMI API 请求失败: ${response.status} ${response.statusText}`);
+            throw new Error(`API 请求失败: ${errorText}`);
         }
 
         const data = await response.json();
+        console.log('API 响应成功:', {
+            hasChoices: !!data.choices,
+            choicesLength: data.choices ? data.choices.length : 0
+        });
+
         return res.json({ response: data.choices[0].message.content });
 
     } catch (error) {
-        console.error('处理请求失败:', {
-            error: error.message,
+        console.error('完整错误信息:', {
+            message: error.message,
             stack: error.stack,
             timestamp: new Date().toISOString()
         });
