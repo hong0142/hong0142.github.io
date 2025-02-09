@@ -22,4 +22,11 @@ vendor/
 
 # 构建输出
 dist/
-build/ 
+build/
+
+# Vercel
+.vercel
+.env*.local
+
+# Node
+node_modules/ 

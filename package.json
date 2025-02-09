@@ -1,0 +1,13 @@
+{
+  "name": "personal-resume",
+  "version": "1.0.0",
+  "description": "个人简历网站",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod"
+  }
+} 

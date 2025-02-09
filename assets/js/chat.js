@@ -189,58 +189,16 @@ class ChatBot {
     }
 
     async callKimiAPI(message) {
-        const API_KEY = process.env.KIMI_API_KEY || '';  // 从环境变量读取API Key
-        if (!API_KEY) {
-            console.error('未配置API Key');
-            return '抱歉，系统配置有误，请联系管理员或发送邮件至：417795841@qq.com';
-        }
-        const API_ENDPOINT = 'https://api.moonshot.cn/v1/chat/completions';
-
-        // 确保上下文内容已加载
-        if (!this.context) {
-            return '抱歉，我暂时无法访问简历内容，请刷新页面或稍后再试。';
-        }
-
         try {
-            const response = await fetch(API_ENDPOINT, {
+            // 通过后端代理发送请求
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: "moonshot-v1-8k",
-                    messages: [
-                        {
-                            role: "system",
-                            content: `你是洪泽平简历的智能助手，请仔细阅读以下简历内容，并严格按照内容回答问题。
-
-===== 简历内容开始 =====
-${this.context}
-===== 简历内容结束 =====
-
-工作要求：
-1. 你必须用第一人称"我"来回答问题，因为你就是洪泽平本人
-2. 所有回答必须100%基于上述简历中提供的信息，严禁编造或添加简历中没有的内容
-3. 如果问题涉及简历中没有提到的内容，请明确回答："抱歉，我的简历中没有提到这部分内容"
-4. 说话风格要专业、自信但不傲慢，体现出一个资深工程师的特点
-5. 特别注意：我拥有2项专利成果（CN116381437A和CN116413558A），都是电弧检测相关的专利，并且我是第一发明人
-6. 回答专利相关问题时，必须明确提到专利号和类型
-7. 回答时要注意突出以下关键项目经验：
-   - AGV智能控制系统项目（2024-至今）
-   - 视觉算法系统项目（2024）
-   - 电弧检测算法项目（2021.7-2023.10）
-   - AI文档处理系统项目（2023.10-2024.2）
-
-重要提示：请先仔细阅读上述简历内容，确保理解所有信息后再回答问题。每次回答前都要检查简历内容，确保回答准确无误。`
-                        },
-                        {
-                            role: "user",
-                            content: message
-                        }
-                    ],
-                    temperature: 0.3,
-                    max_tokens: 1000
+                    message: message,
+                    context: this.context
                 })
             });
 
@@ -249,7 +207,7 @@ ${this.context}
             }
 
             const data = await response.json();
-            return data.choices[0].message.content;
+            return data.response;
         } catch (error) {
             console.error('API调用失败:', error);
             return '抱歉，服务器暂时无法响应，请稍后再试。如果问题持续存在，请直接联系我的邮箱：417795841@qq.com';
