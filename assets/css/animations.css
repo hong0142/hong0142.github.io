@@ -45,64 +45,72 @@
 
 /* 时间线动画 */
 @keyframes slideInLeft {
-    from {
+    0% {
         transform: translateX(-100px);
         opacity: 0;
     }
-    to {
+    100% {
         transform: translateX(0);
         opacity: 1;
     }
 }
 
 @keyframes slideInRight {
-    from {
+    0% {
         transform: translateX(100px);
         opacity: 0;
     }
-    to {
+    100% {
         transform: translateX(0);
         opacity: 1;
     }
 }
 
 @keyframes fadeIn {
-    from {
+    0% {
         opacity: 0;
         transform: translateY(20px);
     }
-    to {
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* 基础时间线样式 */
 .timeline-item {
     opacity: 0;
-    transform: translateZ(0);
+    visibility: hidden; /* 添加可见性控制 */
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d; /* 创建新的层叠上下文 */
     will-change: transform, opacity;
-    backface-visibility: hidden;
+}
+
+/* 动画状态类 */
+.timeline-item.animate {
+    visibility: visible;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
 }
 
 /* PC端动画 */
 @media screen and (min-width: 768px) {
     .timeline-item:nth-child(odd).animate {
-        animation: slideInLeft 0.8s ease forwards;
+        animation-name: slideInLeft;
     }
     
     .timeline-item:nth-child(even).animate {
-        animation: slideInRight 0.8s ease forwards;
+        animation-name: slideInRight;
     }
 }
 
 /* 移动端动画 */
 @media screen and (max-width: 767px) {
-    .timeline-item {
-        transform: none;  /* 重置transform，防止位移 */
-    }
-    
     .timeline-item.animate {
-        animation: fadeIn 0.5s ease forwards;
+        animation-name: fadeIn;
+        animation-duration: 0.5s;
     }
     
     /* 移动端时间线内容样式调整 */
@@ -136,26 +144,37 @@
 
 /* 展开/收起动画 */
 .collapsible-content {
-    transform-origin: top;
-    transition: all 0.3s ease-out;
+    position: relative;
+    z-index: 2;
+    transform: translateZ(0);
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: max-height, opacity;
     overflow: hidden;
-    will-change: transform, opacity;
 }
 
 .collapsible-content:not(.active) {
-    transform: scaleY(0);
-    opacity: 0;
     max-height: 0;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .collapsible-content.active {
-    transform: scaleY(1);
+    max-height: 2000px;
     opacity: 1;
-    max-height: 2000px; /* 根据内容调整 */
+}
+
+/* 确保展开内容不影响时间线动画 */
+.project-details-expanded {
+    position: relative;
+    z-index: 1;
 }
 
 /* 悬停效果 */
 .timeline-content {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -198,8 +217,9 @@
 
 /* 滚动触发动画 */
 .timeline-item.visible {
-    opacity: 1;
-    transform: translateY(0);
+    /* 注释掉可能冲突的状态 */
+    /* opacity: 1; */
+    /* transform: translateY(0); */
 }
 
 /* 项目卡片动画 */
@@ -402,8 +422,25 @@
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
     color: white;
+    z-index: 2;
 }
 
+.video-loading .loading-spinner {
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+.video-loading .loading-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 视频元素样式 */
 .video-container video {
     width: 100%;
     height: 100%;
@@ -414,4 +451,47 @@
 
 .video-container video.loaded {
     opacity: 1;
+}
+
+/* 加载失败状态 */
+.video-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 2;
+}
+
+.video-error i {
+    font-size: 2rem;
+    color: #e74c3c;
+    margin-bottom: 0.5rem;
+}
+
+.video-error .error-text {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.video-error .retry-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.video-error .retry-button:hover {
+    background: #2980b9;
 } 

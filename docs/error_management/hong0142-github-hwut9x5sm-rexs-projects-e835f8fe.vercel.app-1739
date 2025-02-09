@@ -1,0 +1,208 @@
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+Tracking Prevention blocked access to storage for <URL>.
+[新] 通过在 Microsoft Edge 中使用 Copilot 来解释控制台错误: 在上面
+         
+         以说明错误。
+        了解更多信息
+        不再显示
+main.js:226 开始记录访问信息...
+main.js:234 请求数据: {path: '/', timestamp: '2025-02-09T09:50:53.650Z', screenResolution: '1098x618', timeZone: 'Asia/Shanghai', language: 'zh-CN'}
+main.js:239 请求 URL: https://hong0142-github-hwut9x5sm-rexs-projects-e835f8fe.vercel.app/api/visitor
+main.js:226 开始记录访问信息...
+main.js:234 请求数据: {path: '/', timestamp: '2025-02-09T09:50:53.658Z', screenResolution: '1098x618', timeZone: 'Asia/Shanghai', language: 'zh-CN'}
+main.js:239 请求 URL: https://hong0142-github-hwut9x5sm-rexs-projects-e835f8fe.vercel.app/api/visitor
+animations.js:75 [Timeline Animation] DOM Content Loaded
+animations.js:77 [Timeline Animation] Found 10 timeline items
+animations.js:107 [Timeline Animation] Observer Options: {root: null, rootMargin: '100px 0px', threshold: Array(5)}
+animations.js:82 [Timeline Item 1] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 1] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 1] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 2] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 2] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 3] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 3] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 4] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 4] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 4] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 4] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 5] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 5] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 5] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 5] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 6] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 6] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 6] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 6] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 7] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 7] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 7] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 7] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 8] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 8] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 8] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 8] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 9] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 9] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 9] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 9] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 10] Initializing Item {visibility: '', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 10] After Reset {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:171  [Timeline Item 10] Has inline styles: visibility: hidden; opacity: 0;
+(匿名) @ animations.js:171
+(匿名) @ animations.js:158
+animations.js:82 [Timeline Item 10] Started Observing {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 3] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 4] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 5] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 6] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 7] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 8] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 9] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 10] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+chat.js:20 简历内容加载成功: ## 洪泽平的个人介绍
+
+## 基本信息
+
+- 姓名：洪泽平
+- 职位：高级软件工程师
+  * 嵌入式系统开发（DSP/航空电子）
+  * 计算机视觉算法（深度学习）
+  * 工业自动化（AGV/PL...
+favicon.ico:1 
+        
+        
+        GET https://hong0142-github-hwut9x5sm-rexs-projects-e835f8fe.vercel.app/favicon.ico 404 (Not Found)
+main.js:256 响应状态: 200
+main.js:264 访问记录成功: {success: true, message: '访问记录已保存', data: {…}, responseTime: '609ms'}
+main.js:256 响应状态: 200
+main.js:264 访问记录成功: {success: true, message: '访问记录已保存', data: {…}, responseTime: '667ms'}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Starting Animation {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] Before Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] After Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(3), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 1] Animation End Event {visibility: 'visible', opacity: '', transform: '', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] Final State Applied {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 1] Cleanup Complete {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Starting Animation {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Before Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] After Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Intersection Update {visibility: 'visible', opacity: '', transform: '', classList: Array(3), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 2] Animation End Event {visibility: 'visible', opacity: '', transform: '', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Final State Applied {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 2] Cleanup Complete {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(3), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 3] Intersection Update {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}, …}
+animations.js:82 [Timeline Item 3] Starting Animation {visibility: 'hidden', opacity: '0', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Before Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(1), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] After Adding Animate Class {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Animation End Event {visibility: 'visible', opacity: '', transform: '', classList: Array(2), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Final State Applied {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(2), computedStyle: {…}}
+animations.js:82 [Timeline Item 3] Cleanup Complete {visibility: 'visible', opacity: '1', transform: 'none', classList: Array(2), computedStyle: {…}}

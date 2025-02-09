@@ -221,27 +221,61 @@ document.querySelectorAll('.collapsible').forEach(button => {
 
 // 记录访问信息
 async function recordVisit() {
+    const startTime = Date.now();
     try {
-        const response = await fetch('/api/visitor', {
+        console.log('开始记录访问信息...');
+        const requestBody = {
+            path: window.location.pathname,
+            timestamp: new Date().toISOString(),
+            screenResolution: `${window.screen.width}x${window.screen.height}`,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            language: navigator.language || navigator.userLanguage
+        };
+        console.log('请求数据:', requestBody);
+
+        // 获取当前域名
+        const currentDomain = window.location.origin;
+        const apiUrl = `${currentDomain}/api/visitor`;
+        console.log('请求 URL:', apiUrl);
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
+
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({
-                path: window.location.pathname,
-                timestamp: new Date().toISOString()
-            })
+            body: JSON.stringify(requestBody),
+            signal: controller.signal
         });
+        
+        clearTimeout(timeoutId);
+        
+        console.log('响应状态:', response.status);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
-        console.log('访问记录已发送:', data);
+        const endTime = Date.now();
+        console.log('访问记录成功:', {
+            ...data,
+            responseTime: `${endTime - startTime}ms`
+        });
     } catch (error) {
-        console.error('记录访问信息失败:', error);
+        if (error.name === 'AbortError') {
+            console.error('记录访问信息超时');
+        } else {
+            console.error('记录访问信息失败:', {
+                message: error.message,
+                stack: error.stack,
+                timestamp: new Date().toISOString()
+            });
+        }
+        // 错误发生时不重试，避免无限循环
     }
 }
 

@@ -11,165 +11,227 @@ window.addEventListener('scroll', () => {
 // 监听滚动事件，控制章节显示动画
 const observerOptions = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.2
+    rootMargin: '100px 0px',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
 };
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// 观察所有章节
-document.querySelectorAll('.section').forEach(section => {
-    sectionObserver.observe(section);
-});
-
-// 观察时间线项目
-document.querySelectorAll('.timeline-item').forEach(item => {
-    sectionObserver.observe(item);
-});
-
-// 技能条动画
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const skillItems = entry.target.querySelectorAll('.skill-item');
-            skillItems.forEach(item => {
-                const level = item.querySelector('.skill-level');
-                const percent = level.style.width;
-                level.style.setProperty('--skill-percent', percent);
-                item.classList.add('animate');
-            });
-            skillObserver.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// 观察技能部分
-document.querySelectorAll('.skills-grid').forEach(grid => {
-    skillObserver.observe(grid);
-});
-
-// 平滑滚动
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// 处理时间线动画
-document.addEventListener('DOMContentLoaded', () => {
+// 创建调试日志函数
+const debugLog = (element, action, details = {}) => {
     const timelineItems = document.querySelectorAll('.timeline-item');
-    const collapsibles = document.querySelectorAll('.collapsible');
-    
-    // 初始化Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                observer.unobserve(entry.target);
+    const itemIndex = Array.from(timelineItems).indexOf(element);
+    if (itemIndex !== -1) {
+        console.log(
+            `%c[Timeline Item ${itemIndex + 1}] ${action}`,
+            'color: #2196F3',
+            {
+                visibility: element.style.visibility,
+                opacity: element.style.opacity,
+                transform: element.style.transform,
+                classList: Array.from(element.classList),
+                computedStyle: {
+                    opacity: window.getComputedStyle(element).opacity,
+                    transform: window.getComputedStyle(element).transform,
+                    visibility: window.getComputedStyle(element).visibility
+                },
+                ...details
             }
-        });
-    }, {
-        threshold: 0.2
-    });
+        );
+    }
+};
 
-    // 观察所有时间线项目
-    timelineItems.forEach(item => {
-        observer.observe(item);
-    });
+// 统一的Intersection Observer
+const createAnimationObserver = (options) => {
+    return new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const target = entry.target;
+            debugLog(target, 'Intersection Update', {
+                intersectionRatio: entry.intersectionRatio,
+                isIntersecting: entry.isIntersecting
+            });
 
-    // 处理展开/收起功能
-    collapsibles.forEach(button => {
-        let isFirstClick = true;  // 标记是否是首次点击
-        
-        button.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const content = this.nextElementSibling;
-            
-            if (content.classList.contains('active')) {
-                // 收起内容
-                content.classList.remove('active');
-                this.textContent = '查看详情';
-                
-                // 等待动画完成后再隐藏内容
-                setTimeout(() => {
-                    content.style.display = 'none';
-                    // 移除已加载的视频
-                    const videoContainers = content.querySelectorAll('.video-container');
-                    videoContainers.forEach(container => {
-                        const video = container.querySelector('video');
-                        if (video) {
-                            video.pause();
-                            video.remove();
-                        }
-                        // 恢复占位符
-                        const placeholder = container.querySelector('.video-placeholder');
-                        if (placeholder) {
-                            placeholder.style.display = 'flex';
-                        }
-                    });
-                }, 300); // 与CSS动画时间匹配
-            } else {
-                // 展开内容
-                content.style.display = 'block';
-                // 触发重排以确保动画生效
-                content.offsetHeight;
-                content.classList.add('active');
-                this.textContent = '收起详情';
-                
-                // 仅在首次点击时初始化视频容器
-                if (isFirstClick) {
-                    const videoContainers = content.querySelectorAll('.video-container');
-                    videoContainers.forEach(container => {
-                        const placeholder = container.querySelector('.video-placeholder');
-                        const dataSrc = container.getAttribute('data-src');
+            if (entry.isIntersecting) {
+                // 根据元素类型应用不同的动画
+                if (target.classList.contains('section')) {
+                    target.classList.add('visible');
+                } else if (target.classList.contains('timeline-item') && 
+                         !target.classList.contains('animate') && 
+                         entry.intersectionRatio >= 0.25) {
+                    debugLog(target, 'Starting Animation');
+                    
+                    // 重置样式
+                    target.style.cssText = '';
+                    target.style.visibility = 'visible';
+                    
+                    requestAnimationFrame(() => {
+                        debugLog(target, 'Before Adding Animate Class');
+                        target.classList.add('animate');
+                        debugLog(target, 'After Adding Animate Class');
+
+                        const handleAnimationEnd = () => {
+                            debugLog(target, 'Animation End Event');
+                            target.style.opacity = '1';
+                            target.style.transform = 'none';
+                            target.style.visibility = 'visible';
+                            debugLog(target, 'Final State Applied');
+                            
+                            target.removeEventListener('animationend', handleAnimationEnd);
+                            observer.unobserve(target);
+                            debugLog(target, 'Cleanup Complete');
+                        };
                         
-                        if (placeholder && dataSrc) {
-                            placeholder.addEventListener('click', function() {
-                                if (container.querySelector('video')) return; // 防止重复创建视频元素
-                                
-                                // 创建加载指示器
-                                const loadingDiv = document.createElement('div');
-                                loadingDiv.className = 'video-loading';
-                                loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 加载中...';
-                                container.appendChild(loadingDiv);
-                                
-                                // 创建视频元素
-                                const video = document.createElement('video');
-                                video.className = 'lazy-media';
-                                video.controls = true;
-                                video.addEventListener('loadeddata', () => {
-                                    loadingDiv.remove();
-                                    video.classList.add('loaded');
-                                    placeholder.style.display = 'none';
-                                });
-                                video.addEventListener('error', () => {
-                                    loadingDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> 加载失败';
-                                    setTimeout(() => loadingDiv.remove(), 2000);
-                                });
-                                
-                                video.src = dataSrc;
-                                container.appendChild(video);
-                            });
-                        }
+                        target.addEventListener('animationend', handleAnimationEnd);
                     });
-                    isFirstClick = false;
+                } else if (target.classList.contains('skills-grid')) {
+                    const skillItems = target.querySelectorAll('.skill-item');
+                    skillItems.forEach(item => {
+                        const level = item.querySelector('.skill-level');
+                        const percent = level.style.width;
+                        level.style.setProperty('--skill-percent', percent);
+                        item.classList.add('animate');
+                    });
+                    observer.unobserve(target);
                 }
             }
         });
+    }, options);
+};
+
+// 创建统一的观察者
+const observer = createAnimationObserver(observerOptions);
+
+// DOM加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[Animation System] DOM Content Loaded');
+    
+    // 初始化所有需要动画的元素
+    const sections = document.querySelectorAll('.section');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const skillsGrids = document.querySelectorAll('.skills-grid');
+    
+    console.log(`[Animation System] Found: ${sections.length} sections, ${timelineItems.length} timeline items, ${skillsGrids.length} skills grids`);
+
+    // 初始化时间线项目
+    timelineItems.forEach((item, index) => {
+        debugLog(item, 'Initializing Item');
+        item.classList.remove('animate', 'visible');
+        item.style.visibility = 'hidden';
+        item.style.opacity = '0';
+        debugLog(item, 'After Reset');
+        observer.observe(item);
+        debugLog(item, 'Started Observing');
     });
+
+    // 初始化章节
+    sections.forEach(section => {
+        section.classList.remove('visible');
+        observer.observe(section);
+    });
+
+    // 初始化技能网格
+    skillsGrids.forEach(grid => {
+        observer.observe(grid);
+    });
+
+    // 处理展开/收起功能
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const timelineItem = this.closest('.timeline-item');
+            
+            if (timelineItem) {
+                debugLog(timelineItem, 'Collapsible Click', {
+                    buttonState: this.classList.contains('active'),
+                    contentState: content.classList.contains('active')
+                });
+            }
+
+            // 确保展开/收起不影响时间线动画
+            if (timelineItem && timelineItem.classList.contains('animate')) {
+                timelineItem.style.visibility = 'visible';
+                timelineItem.style.opacity = '1';
+                timelineItem.style.transform = 'none';
+                debugLog(timelineItem, 'After Collapsible State Update');
+            }
+            
+            this.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            if (!content.classList.contains('active')) {
+                content.style.maxHeight = '0px';
+                this.textContent = '查看详情';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                this.textContent = '收起详情';
+            }
+        });
+    });
+
+    // 处理视频加载
+    const handleVideoLoad = (container, videoSrc) => {
+        // 移除旧的视频元素（如果存在）
+        const oldVideo = container.querySelector('video');
+        if (oldVideo) {
+            oldVideo.pause();
+            oldVideo.remove();
+        }
+
+        // 创建加载状态
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'video-loading';
+        loadingDiv.innerHTML = `
+            <i class="fas fa-spinner loading-spinner"></i>
+            <span class="loading-text">正在加载视频...</span>
+        `;
+        container.appendChild(loadingDiv);
+
+        // 隐藏占位符
+        const placeholder = container.querySelector('.video-placeholder');
+        if (placeholder) {
+            placeholder.style.display = 'none';
+        }
+
+        // 创建视频元素
+        const video = document.createElement('video');
+        video.className = 'lazy-media';
+        video.controls = true;
+
+        // 加载成功处理
+        video.addEventListener('loadeddata', () => {
+            loadingDiv.remove();
+            video.classList.add('loaded');
+            video.play().catch(error => console.log('Auto-play prevented:', error));
+        });
+
+        // 加载失败处理
+        video.addEventListener('error', () => {
+            loadingDiv.remove();
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'video-error';
+            errorDiv.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="error-text">视频加载失败</span>
+                <button class="retry-button">重试</button>
+            `;
+            container.appendChild(errorDiv);
+
+            // 重试按钮点击处理
+            const retryButton = errorDiv.querySelector('.retry-button');
+            retryButton.addEventListener('click', () => {
+                errorDiv.remove();
+                handleVideoLoad(container, videoSrc);
+            });
+
+            // 显示占位符
+            if (placeholder) {
+                placeholder.style.display = 'flex';
+            }
+        });
+
+        // 设置视频源并开始加载
+        video.src = videoSrc;
+        container.appendChild(video);
+    };
 
     // 处理项目展示图片和视频
     const showcaseItems = document.querySelectorAll('.showcase-item');
@@ -197,14 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.src = src;
                 img.alt = this.querySelector('.showcase-caption').textContent;
             } else if (type === 'video') {
-                const video = document.createElement('video');
-                video.addEventListener('loadeddata', () => {
-                    loadingDiv.remove();
-                });
-                video.src = src;
-                video.controls = true;
-                video.autoplay = true;
-                modalContent.appendChild(video);
+                handleVideoLoad(this, src);
             }
         });
     });

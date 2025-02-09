@@ -18,6 +18,8 @@
 - 优化的打印样式
 - 良好的可访问性
 - SEO友好
+- AI聊天功能（基于KIMI API）
+- 访客记录功能
 
 ## 技术栈
 
@@ -26,6 +28,8 @@
 - JavaScript (原生)
 - Font Awesome (图标)
 - Google Fonts (字体)
+- KIMI API (AI对话)
+- Vercel Serverless (后端服务)
 
 ## 功能
 
@@ -36,13 +40,18 @@
 - 时间线布局
 - 项目展示卡片
 - 打印优化
+- AI简历问答
+- 访客统计
 
 ## 目录结构
 
 ```
 resume/
 ├── index.html          # 主页面
-├── assets/            # 资源文件夹
+├── api/               # API目录
+│   ├── chat.js        # AI聊天API
+│   └── visitor.js     # 访客记录API
+├── assets/           # 资源文件夹
 │   ├── css/          # 样式文件
 │   │   ├── style.css    # 主样式
 │   │   ├── print.css    # 打印样式
@@ -50,9 +59,19 @@ resume/
 │   ├── js/           # JavaScript文件
 │   │   └── main.js      # 主要脚本
 │   └── images/       # 图片资源
-├── favicon.ico       # 网站图标
-└── README.md         # 项目说明
+├── docs/            # 文档目录
+│   ├── architecture/  # 架构文档
+│   │   └── kimi_api_implementation.md  # KIMI API实现指南
+│   └── deployment_guide.md  # 部署指南
+├── favicon.ico      # 网站图标
+└── README.md        # 项目说明
 ```
+
+## 文档
+
+- [部署指南](docs/deployment_guide.md)
+- [KIMI API实现指南](docs/architecture/kimi_api_implementation.md)
+- [访客记录系统实现指南](docs/architecture/visitor_system_implementation.md)
 
 ## 使用说明
 
@@ -60,7 +79,8 @@ resume/
 2. 修改 `index.html` 中的个人信息
 3. 替换 `assets/images/avatar.jpg` 为你的个人照片
 4. 根据需要修改样式和布局
-5. 部署到你的网站服务器
+5. 在Vercel中配置KIMI API密钥
+6. 部署到你的网站服务器
 
 ## 自定义
 

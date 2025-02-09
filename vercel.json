@@ -1,11 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "api/*.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
+  "alias": ["hong0142-github-io.vercel.app"],
   "builds": [
     { "src": "api/**/*.js", "use": "@vercel/node" },
     { "src": "*.html", "use": "@vercel/static" },
@@ -13,14 +8,38 @@
     { "src": "docs/**", "use": "@vercel/static" }
   ],
   "routes": [
+    {
+      "src": "/api/visitor",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "dest": "/api/visitor.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+        "Cache-Control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "src": "/api/chat",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "dest": "/api/chat.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+        "Cache-Control": "no-store, no-cache, must-revalidate"
+      }
+    },
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { 
+      "src": "/(.*)", 
+      "dest": "/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      }
+    }
   ],
   "env": {
-    "VERCEL_DEBUG": "1"
-  },
-  "log": {
-    "access": true,
-    "debug": true
+    "KIMI_API_KEY": "sk-o8MgLyQeam1OluPGcVk0a1Ns5RwgkFLiIUZlTRgUoS36t8OO"
   }
 } 
