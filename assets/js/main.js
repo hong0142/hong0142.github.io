@@ -85,6 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 延迟加载媒体资源
     lazyLoadMedia();
+
+    // 记录访问信息
+    recordVisit();
 });
 
 // 模态框功能
@@ -214,4 +217,19 @@ document.querySelectorAll('.collapsible').forEach(button => {
             });
         }
     });
-}); 
+});
+
+// 记录访问信息
+async function recordVisit() {
+    try {
+        await fetch('/api/visitor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log('访问记录已发送');
+    } catch (error) {
+        console.error('记录访问信息失败:', error);
+    }
+} 

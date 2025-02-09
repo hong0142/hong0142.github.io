@@ -18,5 +18,9 @@
   ],
   "env": {
     "VERCEL_DEBUG": "1"
+  },
+  "log": {
+    "access": true,
+    "debug": true
   }
 } 
